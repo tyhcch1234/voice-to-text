@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>語音轉文字 · iPhone 錄音轉錄（廣東話／English／普通話）</title>
+<meta name="description" content="上載 iPhone 錄音檔（m4a / mp3 / wav），即時在本機轉成文字。支援廣東話、英文、普通話，可匯出 TXT 及 SRT。音訊不會上傳到任何伺服器。" />
+<meta name="theme-color" content="#0f172a" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="glow glow-a"></div>
+<div class="glow glow-b"></div>
+
+<header class="hero">
+  <div class="pill"><span class="dot"></span>100% 本機處理 · 音訊唔會上載</div>
+  <h1>iPhone 錄音 <span class="arrow">→</span> 文字</h1>
+  <p class="lede">上載「語音備忘錄」錄音檔，直接喺你部機度轉做文字。<br>支援 <b>廣東話</b>、<b>English</b>、<b>普通話</b>，可匯出 TXT / SRT 字幕。</p>
+</header>
+
+<main>
+  <section class="panel" id="controls">
+    <div class="field">
+      <div class="field-head"><span class="field-title">語言</span><span class="field-hint">唔確定就揀「自動」</span></div>
+      <div class="segmented" data-group="lang" role="group" aria-label="語言">
+        <button type="button" data-value="auto" class="active" aria-pressed="true">自動偵測</button>
+        <button type="button" data-value="yue" aria-pressed="false">廣東話</button>
+        <button type="button" data-value="en" aria-pressed="false">English</button>
+        <button type="button" data-value="zh" aria-pressed="false">普通話</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-head"><span class="field-title">模型</span><span class="field-hint">首次使用需下載並快取</span></div>
+      <div class="segmented" data-group="model" role="group" aria-label="模型">
+        <button type="button" data-value="tiny" aria-pressed="false">輕量<em>~40MB</em></button>
+        <button type="button" data-value="base" class="active" aria-pressed="true">標準<em>~80MB</em></button>
+        <button type="button" data-value="small" aria-pressed="false">高精度<em>~250MB</em></button>
+      </div>
+    </div>
+
+    <div class="field field-inline">
+      <div class="field-head"><span class="field-title">輸出</span></div>
+      <label class="switch">
+        <input type="checkbox" id="toTrad" checked />
+        <span class="track"></span>
+        <span class="switch-label">轉成繁體（香港用字）</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dropzone" id="drop" tabindex="0" role="button" aria-label="選擇或拖放錄音檔">
+    <input type="file" id="fileInput" accept="audio/*,.m4a,.mp3,.wav,.aac,.caf,.mp4,.mov,.ogg,.flac,.webm" multiple hidden />
+    <div class="dz-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg>
+    </div>
+    <div class="dz-title">拖放錄音檔，或<span class="link">選擇檔案</span></div>
+    <div class="dz-sub">支援 m4a（iPhone 語音備忘錄）· mp3 · wav · aac · caf · mp4，可一次選多個</div>
+  </section>
+
+  <div class="statusbar" id="statusbar" hidden>
+    <div class="sb-left"><span class="spinner" id="sbSpinner"></span><span id="sbText">準備中…</span></div>
+    <div class="sb-right" id="sbMeta"></div>
+  </div>
+
+  <section class="queue" id="queue"></section>
+
+  <section class="tips" id="tips">
+    <h2>使用貼士</h2>
+    <ul>
+      <li><b>速度</b>：轉錄速度視乎裝置，大約等同錄音長度嘅 0.3–1.5 倍。長錄音建議先分段。</li>
+      <li><b>廣東話</b>：模型對廣東話嘅支援比英文弱，會出現書面語或用字偏差；「高精度」模型效果最好。</li>
+      <li><b>iPhone</b>：iOS Safari 記憶體有限，10 分鐘以上嘅錄音建議用電腦瀏覽器（Chrome / Edge）處理。</li>
+      <li><b>私隱</b>：所有解碼同轉錄都喺瀏覽器內完成，音訊同文字都唔會離開你部機。</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span>本機 Whisper 語音辨識 · 無伺服器、無 API key</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
