@@ -22,10 +22,9 @@
 <main>
   <section class="panel" id="controls">
     <div class="field">
-      <div class="field-head"><span class="field-title">語言</span><span class="field-hint">唔確定就揀「自動」</span></div>
+      <div class="field-head"><span class="field-title">語言</span><span class="field-hint">揀錯會影響準確度</span></div>
       <div class="segmented" data-group="lang" role="group" aria-label="語言">
-        <button type="button" data-value="auto" class="active" aria-pressed="true">自動偵測</button>
-        <button type="button" data-value="yue" aria-pressed="false">廣東話</button>
+        <button type="button" data-value="yue" class="active" aria-pressed="true">廣東話</button>
         <button type="button" data-value="en" aria-pressed="false">English</button>
         <button type="button" data-value="zh" aria-pressed="false">普通話</button>
       </div>
@@ -51,12 +50,12 @@
   </section>
 
   <section class="dropzone" id="drop" tabindex="0" role="button" aria-label="選擇或拖放錄音檔">
-    <input type="file" id="fileInput" accept="audio/*,.m4a,.mp3,.wav,.aac,.caf,.mp4,.mov,.ogg,.flac,.webm" multiple hidden />
+    <input type="file" id="fileInput" accept="audio/*,.m4a,.mp3,.wav,.aac,.mp4,.mov,.ogg,.flac,.webm" multiple hidden />
     <div class="dz-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg>
     </div>
     <div class="dz-title">拖放錄音檔，或<span class="link">選擇檔案</span></div>
-    <div class="dz-sub">支援 m4a（iPhone 語音備忘錄）· mp3 · wav · aac · caf · mp4，可一次選多個</div>
+    <div class="dz-sub">支援 m4a（iPhone 語音備忘錄）· mp3 · wav · aac · mp4 · m4v，可一次選多個</div>
   </section>
 
   <div class="statusbar" id="statusbar" hidden>
@@ -69,9 +68,10 @@
   <section class="tips" id="tips">
     <h2>使用貼士</h2>
     <ul>
-      <li><b>速度</b>：轉錄速度視乎裝置，大約等同錄音長度嘅 0.3–1.5 倍。長錄音建議先分段。</li>
-      <li><b>廣東話</b>：模型對廣東話嘅支援比英文弱，會出現書面語或用字偏差；「高精度」模型效果最好。</li>
-      <li><b>iPhone</b>：iOS Safari 記憶體有限，10 分鐘以上嘅錄音建議用電腦瀏覽器（Chrome / Edge）處理。</li>
+      <li><b>語言</b>：引擎冇自動語言偵測，錄音係邊種語言就要自己揀；中英夾雜揀「廣東話」或「普通話」都可以。</li>
+      <li><b>廣東話</b>：模型本身冇獨立粵語 token，會用中文模式處理，較易出現書面語化同同音字；「高精度」模型效果最好。</li>
+      <li><b>速度</b>：轉錄時間大約係錄音長度嘅 1–10 倍（視乎模型同裝置）；支援 WebGPU 嘅電腦會快好多。</li>
+      <li><b>iPhone</b>：iOS Safari 記憶體有限，超過 10 分鐘嘅錄音建議用電腦 Chrome / Edge 處理。</li>
       <li><b>私隱</b>：所有解碼同轉錄都喺瀏覽器內完成，音訊同文字都唔會離開你部機。</li>
     </ul>
   </section>

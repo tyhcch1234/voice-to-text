@@ -3,11 +3,12 @@
   'use strict';
 
   const MAX_MINUTES = 45;          // 單一檔案上限（瀏覽器記憶體考量）
-  const LANG_MAP = { auto: null, yue: 'zh', en: 'en', zh: 'zh' };
+  // Whisper 只有「中文」token，冇獨立粵語 token → 廣東話用 zh 處理
+  const LANG_MAP = { yue: 'zh', en: 'en', zh: 'zh' };
   const MODEL_LABEL = { tiny: '輕量', base: '標準', small: '高精度' };
 
   const state = {
-    lang: 'auto',
+    lang: 'yue',
     model: 'base',
     toTrad: true,
     preferGpu: false,
